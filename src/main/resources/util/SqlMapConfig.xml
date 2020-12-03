@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="member"		type="com.wemo.domain.Member"/>
+		<typeAlias alias="memo"	 		type="com.wemo.domain.Memo"/>
+		<typeAlias alias="calendarbean" type="com.wemo.domain.Calendarbean"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="sql/Member.xml"/>
+		<mapper resource="sql/Memo.xml"/>
+		<mapper resource="sql/Calendar.xml"/>
+	</mappers>
+</configuration>

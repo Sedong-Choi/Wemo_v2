@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Cal">
+
+	<insert id="insert" parameterType="calendarbean">
+	<selectKey resultType="int" order="BEFORE" keyProperty="MEMO_NUM">
+		SELECT NVL(MAX(MEMO_NUM),0)+1 FROM CALENDAR WHERE USER_EMAIL=#{USER_EMAIL}
+	</selectKey>	
+		INSERT INTO CALENDAR
+				(CALENDAR_USERNAME, USER_EMAIL, MEMO_NUM, MEMO_SUB, 
+				 MEMO_TEX, MEMO_DATE, "start", "end", 
+				 MEMO_COLOR, CALENDAR_TEXTCOLOR, CALENDAR_ALLDAY, TITLE)
+		  VALUES(#{USER_EMAIL}, #{USER_EMAIL}, #{MEMO_NUM}, #{MEMO_SUB}, 
+		  		 #{MEMO_TEX}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), #{start}, #{end}, 
+		  		 #{MEMO_COLOR}, #{CALENDAR_TEXTCOLOR}, #{CALENDAR_ALLDAY}, #{title})
+	</insert>
+		
+	
+	<select id="count" resultType="int" parameterType = "calendarbean">
+		SELECT COUNT(*) FROM CALENDAR WHERE USER_EMAIL = #{USER_EMAIL}
+	</select>
+	
+	<select id="list" resultType="calendarbean" parameterType = "calendarbean">
+	 	SELECT * FROM CALENDAR 
+	 	WHERE USER_EMAIL = #{USER_EMAIL}
+	 	ORDER BY MEMO_DATE DESC, 
+	 			 MEMO_PRE ASC 
+	 	
+	 </select>
+	 
+	<update id="update" parameterType="calendarbean">
+		UPDATE CALENDAR
+		   SET MEMO_SUB = #{MEMO_SUB},
+				MEMO_TEX = #{MEMO_TEX},
+				title = #{title},
+				<!-- <if test ="allDay eq true">
+				"start" = #{start},
+				"end" = #{end},
+				</if> -->
+				"start" = #{start},
+				"end" = #{end},
+				MEMO_COLOR = #{MEMO_COLOR},
+				CALENDAR_ALLDAY = #{allDay}
+			where USER_EMAIL = #{USER_EMAIL} and MEMO_NUM = #{MEMO_NUM}
+	</update>
+	
+	
+	<delete id="delete" parameterType="calendarbean">
+		DELETE FROM CALENDAR
+			   WHERE USER_EMAIL = #{USER_EMAIL} 
+			   	 AND MEMO_NUM = #{MEMO_NUM}
+	</delete>
+	
+</mapper>

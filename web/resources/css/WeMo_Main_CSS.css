@@ -1,0 +1,159 @@
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.navTable {
+	border-collapse: collapse;
+}
+
+.normal-menu {
+	border-radius: 5% 5% 0% 0%;
+	margin-top : 2px;
+	width: 8%;
+	line-height: 40px;
+	height: 40px;
+	font-weight: 700;
+	font-size: 14pt;
+	text-align: center;
+}
+
+.normal-menu:last-child {
+	border-radius: 0% 0%;
+	width: 600px;
+}
+
+.mobile-nav {
+	width : 10%;
+    position : fixed;
+    left : 90%;
+ }
+ 
+.mobile-row{
+	height : 60px;
+}
+.mobile-menu {
+	cursor : pointer;
+ 	border-radius: 5% 0% 0% 5%;
+ 	font-size: 14pt;
+ 	font-weight : 700;
+ 	text-align : center;
+ }
+
+.menu-study {
+	background-color : #68CD2F;	
+}
+
+.menu-health {
+	background-color : #FFDBA7;
+}
+
+.menu-money {
+	background-color : #FEC834;
+}
+
+.menu-calendar {
+	background-color : #FF7930;
+}
+
+.menu-important {
+	background-color : #D00002;
+}
+
+.menu-trash {
+	background-color : #D19D52;
+}
+
+.menu-analysis {
+	background-color : #682F02;
+	color : white;
+}
+
+.menu-search {
+	background-color : #f8f9fa;
+}
+
+.menu-setting {
+	background-color : #018136;
+}
+
+.material-icons {
+	cursor : pointer;
+}
+
+.search_input {
+	font-size: 20pt;
+	line-height: 20px;
+	width: 150px;
+	border: 1px solid gray;
+	box-shadow: 1px 1px gray;
+	border-radius: 5px;
+}
+
+.memobox-list, .memoContent-list {
+	width : 90%;
+}
+
+li {
+	list-style: none;
+	}
+
+textarea {
+	border:none;
+	outline:none;
+}
+
+.listedMemoSaveBtn {
+	margin : .5em .5em .5em .5em;
+}
+
+.memobox-normal {
+	margin-top: 20px;
+	border: 1px solid #CCC;
+	border-radius: 5px;
+	box-shadow: 5px gray;
+	background-color : khaki;
+}
+
+.colorpad:hover{
+            margin : 1px;
+            border : 1px solid black;
+        }
+
+.onFavo {
+	color: salmon;
+}
+
+.memo-top {
+	margin: 5px;
+}
+
+.result-word {
+	display:block; 
+	background-color:white
+}
+
+.search-modal-body tr:hover {
+	background-color:gray;
+	cursor:pointer
+}
+
+.setting-input {
+    border : 2px solid darkslategray;
+}
+
+.setting-label {
+    font-size : 16pt;
+    font-weight : 700;
+}
+
+.setting-pad {
+    width : 90%;
+    border-radius : 00px 0px 20px 20px;
+    padding : 10px 10px 60px 10px;
+    margin-bottom: 20px;  
+}
+
+.settingConfirmBtn {
+	background-color : #FFC0CB;
+    margin-right : 20px;
+}

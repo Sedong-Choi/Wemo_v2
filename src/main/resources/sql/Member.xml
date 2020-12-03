@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Members">
+
+	<insert id = "insert" parameterType = "member">
+		INSERT INTO MEMBER VALUES(#{USER_EMAIL}, #{USER_PASS}, 'WEMO', #{USER_EMAIL}, '설정된 자동완성 폼이 없습니다', '설정된 자동완성 폼이 없습니다', '설정된 자동완성 폼이 없습니다', 'STUDY')
+	</insert>
+	
+	<insert id = "kakaoInsert" parameterType = "String">
+		INSERT INTO MEMBER 
+			  (USER_EMAIL, AUTH_TYPE, USER_SUB, USER_NICK) 
+		VALUES(#{USER_EMAIL},'KAKAO', 'STUDY', #{USER_EMAIL})
+	</insert>
+	
+	<insert id = "naverInsert" parameterType = "String">
+		INSERT INTO MEMBER 
+			  (USER_EMAIL, AUTH_TYPE, USER_SUB, USER_NICK) 
+		VALUES(#{USER_EMAIL},'NAVER', 'STUDY', #{USER_EMAIL})
+	</insert>					     	 
+	
+	<select id = "getMemberDetail" parameterType = "String" resultType = "member">
+		SELECT * FROM MEMBER WHERE USER_EMAIL = #{USER_EMAIL}
+	</select>
+	
+	<select id = "isId" parameterType="String" resultType="String">
+		select USER_PASS from member where USER_EMAIL= #{USER_EMAIL}
+	</select>
+	
+	<select id = "idcheck" parameterType = "String" resultType = "String">
+		select USER_EMAIL from member where USER_EMAIL = #{USER_EMAIL}
+	</select>
+	
+	<select id = "getUserAutoForm" parameterType = "member" resultType = "member">
+				SELECT USER_FORM1, USER_FORM2, USER_FORM3 FROM MEMBER WHERE USER_EMAIL = #{USER_EMAIL}
+	</select>
+	
+	<update id = "updateLastSection" parameterType = "member">
+		UPDATE MEMBER SET USER_SUB = #{USER_SUB} WHERE USER_EMAIL = #{USER_EMAIL}
+	</update>
+	
+	<update id = "saveUserSetting" parameterType = "member">
+		UPDATE MEMBER 
+		SET USER_PASS = #{USER_PASS}, 
+		USER_FORM1 = #{USER_FORM1},
+		USER_FORM2 = #{USER_FORM2},
+		USER_FORM3 = #{USER_FORM3} 
+		WHERE USER_EMAIL = #{USER_EMAIL}
+	</update>
+</mapper>

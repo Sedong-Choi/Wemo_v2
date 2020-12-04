@@ -3,6 +3,7 @@ package com.wemo.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wemo.domain.Member;
 import com.wemo.domain.Memo;
 
 public interface MemoService {

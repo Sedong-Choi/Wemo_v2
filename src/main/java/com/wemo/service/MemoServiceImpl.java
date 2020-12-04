@@ -3,6 +3,7 @@ package com.wemo.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wemo.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,11 @@ public class MemoServiceImpl implements MemoService {
 	
 	@Override
 	public boolean memoForNewAccount(String USER_EMAIL) {
-		if(memodao.memoForNewAccount(USER_EMAIL) > 0) {
+		Memo memo = new Memo();
+		memo.setUSER_EMAIL(USER_EMAIL);
+		memo.setMEMO_NUM(0);
+
+		if(memodao.memoForNewAccount(memo) > 0) {
 			return true;
 		} else 
 			return false;

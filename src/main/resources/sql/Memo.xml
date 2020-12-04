@@ -14,7 +14,7 @@
 	
 	<select id = "getMemoList" parameterType = "memo" resultType = "memo">
 		SELECT * FROM MEMO 
-		WHERE USER_EMAIL = #{USER_EMAIL} 
+		WHERE USER_EMAIL = #{USER_EMAIL}
 		  AND MEMO_SUB = #{MEMO_SUB}
 		  AND MEMO_TRA = 'N' 
 		ORDER BY MEMO_ZID DESC
@@ -49,14 +49,17 @@
 		SELECT COALESCE( MEMO_TEX , '빈 메모') MEMO_TEX FROM MEMO WHERE USER_EMAIL = #{USER_EMAIL} AND MEMO_NUM = #{MEMO_NUM}
 	</select>
 
-	<insert id="memoForNewAccount" parameterType="String">
-	INSERT INTO MEMO VALUES(#{USER_EMAIL}, 1, 'STUDY', 'ABSOLUTE', '100px', '100px', 'khaki', '350px', '200px', 1000, 'WeMo에 오신것을 환영합니다', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), 'WeMo에 오신것을 환영합니다', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), 'N', 'N', 'N', '잠금 키워드')
+	<insert id="memoForNewAccount" parameterType="memo">
+		<selectKey resultType = "int" order = "BEFORE" keyProperty = "MEMO_NUM">
+			SELECT COALESCE(MAX(MEMO_NUM), 0)+1  FROM MEMO
+		</selectKey>
+	INSERT INTO MEMO VALUES(#{USER_EMAIL}, #{MEMO_NUM}, 'STUDY', 'ABSOLUTE', '100px', '100px', 'khaki', '350px', '200px', 1000, 'WeMo에 오신것을 환영합니다', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), 'WeMo에 오신것을 환영합니다', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), 'N', 'N', 'N', '잠금 키워드')
 					<!-- USER_EMAIL, MEMO_NUM, MEMO_SUB, MEMO_POSITION, MEMO_TOP, MEMO_LEFT, MEMO_COLOR, MEMO_WIDTH, MEMO_HEIGHT, MEMO_ZID, MEMO_TEX, MEMO_DATE, MEMO_PRE, PREV_TEX, MEMO_FAV, MEMO_LOC, MEMO_TRA, MEMO_KEYW -->
 	</insert>
 	
 	<insert id="newMemo" parameterType="memo">
 		<selectKey resultType = "int" order = "BEFORE" keyProperty = "MEMO_NUM">
-			SELECT COALESCE(MAX(MEMO_NUM), 0)+1 FROM MEMO WHERE USER_EMAIL = #{USER_EMAIL}
+			SELECT COALESCE(MAX(MEMO_NUM), 0)+1 FROM MEMO
 		</selectKey>
 	INSERT INTO MEMO VALUES(#{USER_EMAIL}, #{MEMO_NUM} , #{MEMO_SUB}, 'ABSOLUTE', '100px', '100px', 'khaki', '350px', '200px', 999, '새 메모', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), '새 메모', DATE_FORMAT(SYSDATE(), '%Y-%m-%d'), 'N', 'N', 'N', '잠금 키워드')
 					<!-- USER_EMAIL, MEMO_NUM, MEMO_SUB, MEMO_POSITION, MEMO_TOP, MEMO_LEFT, MEMO_COLOR, MEMO_WIDTH, MEMO_HEIGHT, MEMO_ZID, MEMO_TEX, MEMO_DATE, MEMO_PRE, PREV_TEX, MEMO_FAV, MEMO_LOC, MEMO_TRA, MEMO_KEYW -->

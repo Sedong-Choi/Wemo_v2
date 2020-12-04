@@ -3,6 +3,7 @@ package com.wemo.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.wemo.domain.Member;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,8 +19,11 @@ public class MemoDAO {
 		return sqlSession.selectList("Memoes.getMemoList", memo);		
 	}
 
-	public int memoForNewAccount(String USER_EMAIL) {
-		return sqlSession.insert("Memoes.memoForNewAccount",USER_EMAIL);
+	public int memoForNewAccount(Memo memo) {
+
+
+
+		return sqlSession.insert("Memoes.memoForNewAccount",memo);
 	}
 
 	public int newMemo(Memo memo) {

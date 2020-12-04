@@ -8,6 +8,7 @@
 
 	<insert id = "insert" parameterType = "member">
 		INSERT INTO MEMBER VALUES(#{USER_EMAIL}, #{USER_PASS}, 'WEMO', #{USER_EMAIL}, '설정된 자동완성 폼이 없습니다', '설정된 자동완성 폼이 없습니다', '설정된 자동완성 폼이 없습니다', 'STUDY')
+		
 	</insert>
 	
 	<insert id = "kakaoInsert" parameterType = "String">

@@ -7,6 +7,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wemo.dao.MemoDAO;
+import com.wemo.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -30,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+
+	@Autowired
+	private MemoService memoService;
 	
 	@RequestMapping(value = "/LoginWeMo")
 	public String loginWeMo(@CookieValue(value = "autoLogin", required =false) Cookie autoLogin) throws Exception {
@@ -101,6 +106,8 @@ public class MemberController {
 	@PostMapping(value = "joinWeMo")
 	public String createNewAccount(Member member) {
 		mService.insertMember(member);
+		// 현재 회원 가입시 최초 메모 생성 없음
+		memoService.memoForNewAccount(member.getUSER_EMAIL());
 		return "WeMo_Login";
 	}
 	

@@ -7,8 +7,8 @@
 
     <bean destroy-method="close" id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
-        <property value="jdbc:mysql://127.0.0.1:3306/wemo_data?serverTimezone=Asia/Seoul" name="url"/>
-        <property value="sedong" name="username"/>
+        <property value="jdbc:mysql://127.0.0.1:3306/wemo?serverTimezone=Asia/Seoul" name="url"/>
+        <property value="root" name="username"/>
         <property value="sedong" name="password"/>
     </bean>
     

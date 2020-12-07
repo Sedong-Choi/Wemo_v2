@@ -1,4 +1,4 @@
-
+use wemo;
 
 CREATE TABLE MEMBER
 (

@@ -742,6 +742,7 @@ $('body').keypress(function(e){
 
 /* saveMemoProperties function */
 function saveMemoProperties(target){
+	console.log('이거 실행하는 건가?');
 	memoSelector = $(target).closest('.memobox-normal');
 	listedMemoSelector = $(target).closest('.list-group');
 	var windowWidth = $(window).width();
@@ -781,6 +782,11 @@ function saveMemoProperties(target){
 				"MEMO_DATE" : memoSelector.find('.MEMO_DATE').text(),
 				"MEMO_FAV" : fav,
 				"MEMO_LOC" : loc        			
+				}
+
+				if(memoObj.MEMO_LEFT.substring(0,1) === "-" || memoObj.MEMO_TOP.substring(0,1)==="-"){
+					memoObj.MEMO_LEFT = Math.random() * 100+"px";
+					memoObj.MEMO_TOP = Math.random() * 100 +80 +"px"
 				}
 		
 		var url = "saveMemoProperties";
@@ -1128,11 +1134,7 @@ function addSearchMemoEvent(){
 	       var dropdown = $('.search-modal-body');
 	       	   dropdown.children().remove();
 	       
-	       	if(rdata.length == 0){
-	             $('input[name=SearchMemo]').val('찾는 메모 없음');
-	           return false; 
-	           
-	       	} else {
+
 	    	   
 	       	  var search_result = "<tbody>";
 		       $.each(rdata, function(index){
@@ -1148,18 +1150,23 @@ function addSearchMemoEvent(){
 		    	   var MEMO_SUB = sectionTranslateENtoKR(Memolist.MEMO_SUB);
 		    	   
 		    	   search_result += "<tr class = 'search_result'><td><input type = 'hidden' class = 'SEARCH_MEMO_NUM' value = "+Memolist.MEMO_NUM+">"
-		    	   				 +  "<span data-dismiss ='modal'>메모 내용 : " + MEMO_TEX + "&nbsp;&nbsp;"
+		    	   		+" <input type = 'hidden' class = 'SEARCH_MEMO_SUB' value = "+ Memolist.MEMO_SUB+">"
+					   +  "<span data-dismiss ='modal'>메모 내용 : " + MEMO_TEX + "&nbsp;&nbsp;"
 		    	   				 +  "메모 위치 : " + MEMO_SUB+ "</span></td></tr>";		    	   
-		       })
+		       });
 		       search_result += "</tbody>";
 	       	   dropdown.append(search_result);
-		       var searchResultSet = $('.search_result')
+		       var searchResultSet = $('.search_result');
 		       $.each(searchResultSet, function(index){
-		    	   $(searchResultSet[index]).click(memoSearchRemove);
-		       })
+		       		$(searchResultSet[index]).click(memoSearchRemove);
+		       });
 		       $('#ModalForSearch').modal();
-	       	}
-	       }//success end
+
+
+	       },//success end,
+			error:function(request,status,error){
+	       		alert('찾는 메모 없음');
+			}//error end
 	    });//ajax end
  } else {
     alert('검색어를 입력해 주세요');
@@ -1167,23 +1174,65 @@ function addSearchMemoEvent(){
  }
 }
 
-function memoSearchRemove(e){
-	var getSearchedMEMO_NUM = $(this).children().find('.SEARCH_MEMO_NUM').val();
-	console.log('Searched MEMO_NUM : '+ getSearchedMEMO_NUM);
-	var allMemoSelect = $('.MEMO_NUM');
- 
-	if($('.MEMO_NUM[value='+getSearchedMEMO_NUM+']')){
-		 $.each(allMemoSelect, function(index, e){
-			 var eachMemo = $(allMemoSelect[index]);
-			 if (eachMemo.val() != getSearchedMEMO_NUM){
-				 eachMemo.closest('.memobox').css('display', 'none');
-			 }
-		 })
-		$('.search-modal-body').children().remove();
-	    $('#ModalForSearch').click();   
-	 	};
-	}
+function memoSearchRemove(){
 
+	var MEMO_NUM = $(this).children().find('.SEARCH_MEMO_NUM').val();
+	var MEMO_SUB = $(this).children().find('.SEARCH_MEMO_SUB').val();
+	console.log('Searched_MEMO_NUM : '+ MEMO_NUM);
+	console.log('Searched_MEMO_SUB : '+ MEMO_SUB);
+
+
+
+
+	// section 클릭 이 구문이 들어가면 밑의 함수가 먼저 실행 된다.
+	switch (MEMO_SUB){
+		case 'STUDY':
+			$('.menu-study').click();
+			addAllEventsOnPage();
+			break;
+		case 'HEALTH':
+			$('.menu-health').click();
+			addAllEventsOnPage();
+			console.log("이거 언제 실행될까");
+
+			break;
+		case 'MONEY':
+			$('.menu-money').click();
+			addAllEventsOnPage();
+			break;
+		default:
+			$('.menu-study').click();
+			addAllEventsOnPage();
+			break;
+	};
+	$('.search-modal-body').children().remove();
+	$('#ModalForSearch').click();
+
+	setTimeout(function(){
+		unSelectedMemoRemove(MEMO_NUM);
+	},200);
+
+}
+//searched section memo remove function
+function unSelectedMemoRemove(MEMO_NUM){
+	//선택되지 않은 메모 안보이게 하기.
+	var allMemoSelect =$('.MEMO_NUM');
+
+
+		$.each(allMemoSelect, function(index, e){
+			var eachMemo = $(allMemoSelect[index]);
+
+
+			if (eachMemo.val() != MEMO_NUM){
+				//적용이 안된다!
+
+				eachMemo.closest('.memobox').css('display','none');
+
+			}
+		});
+
+
+}
 /* memoColorChange Function*/
 function memoColorChange(e){
 	var mbxSelector = $(this).closest('.memobox');

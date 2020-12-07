@@ -29,7 +29,7 @@
 	</select>
 	<select id = "searchMemoList" parameterType = "memo" resultType = "memo">
 		SELECT * FROM MEMO
-		WHERE USER_EMAIL = #{USER_EMAIL} AND MEMO_TEX LIKE #{MEMO_TEX}
+		WHERE USER_EMAIL = #{USER_EMAIL} AND MEMO_TEX LIKE #{MEMO_TEX} AND MEMO_TRA = 'N'
 	</select>
 	<select id = "getCountMemolist" parameterType = "memo" resultType = "int">
 		SELECT COUNT(*) FROM MEMO

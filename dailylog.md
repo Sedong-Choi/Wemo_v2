@@ -68,3 +68,13 @@ STS 에서 Spring MVC project로 만들었다.<br>
  * memo poroperties 의 MEMO_TOP, MEMO_LEFT의 첫 글자가 - 일때 
    MATH.random()을 사용해 양수로 변환 후 값을 넘긴다
 
+
+2020-12-07 END!
+----------------
+## 2020-12-08
+**AWS RDS 연결**
+ * AWS RDRDS로 MySql생성 후 database.properties 생성했다. 어제까지만 해도 로드가 되었던 JDBC Driver가 로드가 안된다..
+ `경로 설정이 잘못된것 같다`
+ * 경로 고치던 중 context.xml 들의 mapping 이 안되는 오류가 생겼다.(11:28) 
+
+ 

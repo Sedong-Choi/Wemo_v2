@@ -81,33 +81,33 @@ public class MemoController {
 		PrintWriter out = null;
 		try {	
 			if(mService.newMemo(memoObj)) {
-				// newMemo�� return���� boolean
+
 				memoObj = mService.getLatestMemoInfo(memoObj);
 					String jsonNewMemo = new Gson().toJson(memoObj);
 					int latestMEMO_NUM = memoObj.getMEMO_NUM();
-					// �� �������� �߰��� �޸��� ������ �������� �� �������� �޸� ��ȣ�� ����
+
 					int countMemolist = mService.getCountMemolist(memoObj);
-					System.out.println("�޸� ����Ʈ ���� : " + countMemolist);
-					// �޸� ����Ʈ ������ ���ؼ� 1���� ũ�ٸ� z-index�� ó���ϱ�
+					System.out.println("count MemoList : " + countMemolist);
+
 					if(countMemolist > 1) {
 						memoObj.setMEMO_NUM(latestMEMO_NUM);
 						if(mService.adjustMemoboxzindex(memoObj)) {
-							// �ش� �޸��ȣ�� ������ �������� z-index���� -1ó��	
-							System.out.println("�ش� �޸��ȣ�� ������ �������� z-index���� -1ó��");
+
+
 							return jsonNewMemo;
 						} else {
 							out = resp.getWriter();
-							out.println("<script>alert('�� �޸� �߰��ϴ� ���� ������ �߻��߽��ϴ�. �ٽ� �õ����ּ���.')</script>");
+							out.println("<script>alert('')</script>");
 							return null;
 						}
 					} else {
-						// countMemolist = 1�̶�� ��� �߰��� �޸�ۿ� �����Ƿ� ó���� �ʿ� ���� out�ݰ� memo�� ����
+
 						return jsonNewMemo;
 					}
 					
 			} else {
 				out = resp.getWriter();
-				out.println("<script>alert('�� �޸� �߰��ϴµ� �����Ͽ����ϴ�. �ٽ� �õ����ּ���.');</script>");
+				out.println("<script>alert('');</script>");
 				return null;
 			}
 		} catch (Exception e) {
@@ -127,11 +127,11 @@ public class MemoController {
 		System.out.println("USER_EMAIL:" + memoObj.getUSER_EMAIL() +" Section :" + memoObj.getMEMO_SUB());
 		PrintWriter out = null;
 		try {
-			// request�� �޾ƿ� ������ member��ü�� memo��ü�� ���� ����
+
 			member.setUSER_EMAIL(memoObj.getUSER_EMAIL());
 			member.setUSER_SUB(memoObj.getMEMO_SUB());
 			String Section = memoObj.getMEMO_SUB();
-			// member ���̺��� USER_SUB�� ������Ʈ �ϰ� ������Ʈ�� �����ϸ� �ش� ������ �޸� ����Ʈ�� �޾ƿ�
+
 		if(memberService.updateLastSection(member)) {
 			List<Memo> mList = null;
 			if(Section.equals("IMPORTANT")) {
@@ -148,15 +148,15 @@ public class MemoController {
 			
 			if(mList != null){	
 				out.write(new Gson().toJson(mList));
-				System.out.println("������ ����");
+
 			} else {			
-				out.println("<script>alert('������ ���濡 ������ �߻��Ͽ����ϴ�. ��� �Ŀ� �ٽ� �õ��� �ּ���.')</script>");
+				out.println("<script>alert('')</script>");
 			}
 			
 		} else {
-			System.out.println("memberService.updateLastSection()���� ������ �߻��Ͽ����ϴ�");
+			System.out.println("memberService.updateLastSection()");
 			out = resp.getWriter();
-			out.println("<script>alert('������ ���� ���߿� ������ �߻��Ͽ����ϴ�. ��� �Ŀ� �ٽ� �õ��� �ּ���.')</script>");
+			out.println("<script>alert('')</script>");
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -305,16 +305,16 @@ public class MemoController {
 				String id = memoObj.getUSER_EMAIL();
 				String pass = memoObj.getMEMO_KEYW();
 				if(memberService.isId(id, pass)) {
-					memoObj.setMEMO_KEYW("��� Ű���� �ʱ�ȭ");
+					memoObj.setMEMO_KEYW("");
 					if(mService.updateMemoLockAndUnlock(memoObj)) {
 						String memoContent = mService.getMemoContent(memoObj).getMEMO_TEX();
 						String jsonContent = new Gson().toJson(memoContent);
 						System.out.println(jsonContent.length());
 						out.write(jsonContent);
 					} else
-						out.print("�Ͻ����� ������ �޸� ������ �ҷ����� ���߽��ϴ�");
+						out.print("");
 				} else {
-					out.print("��й�ȣ�� Ʋ���ϴ�");
+					out.print("");
 				}
 			}
 		} catch (Exception e) {

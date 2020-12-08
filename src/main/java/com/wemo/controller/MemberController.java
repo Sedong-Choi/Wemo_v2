@@ -39,8 +39,8 @@ public class MemberController {
 	@RequestMapping(value = "/LoginWeMo")
 	public String loginWeMo(@CookieValue(value = "autoLogin", required =false) Cookie autoLogin) throws Exception {
 		if (autoLogin != null) {
-			// �α���â �� �� autoLogin�� üũ�ߴٸ� ��Ű�� ������ 7�Ϸ� �ʱ�ȭ�ϰ� �ٷ� �α���
-			// �α��� �� �� ����� ������ �ʿ��ϹǷ� ����� ������ memberdao���� �޾ƿ� ��ü�� mv�� ��� Memolist�� �ѱ�
+
+
 			autoLogin.setMaxAge(86400*7);
 			String id = autoLogin.getValue();
 			Member info = memberdao.getMemberDetail(id);
@@ -63,8 +63,8 @@ public class MemberController {
 		resp.setContentType("text/html;charset=UTF-8");
 		
 		if(memberdao.isId(id).equals(pass)) {
-			// isId�� return���� USER_PASS���̹Ƿ� �Է��� pass���� ��ġ�ϸ�
-			// session�� id�� �����Ͽ� �α��� ��Ŵ
+
+
 			session.setAttribute("USER_EMAIL", id);
 			
 			
@@ -72,7 +72,7 @@ public class MemberController {
 			Cookie autoLoginInfo = new Cookie("autoLogin", id);
 			if(!autoLogin.equals(""))
 				autoLoginInfo.setMaxAge(86400*7);
-				// �ڵ� �α����� üũ�ϸ� ��Ű�� ������ 7�Ϸ� �����Ͽ� ���̵� ����
+
 			else
 				autoLoginInfo.setMaxAge(0);
 			
@@ -83,7 +83,7 @@ public class MemberController {
 			return "redirect:Memolist?MEMO_SUB="+MEMO_SUB;
 		} else {
 			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('��й�ȣ�� ��ġ���� �ʽ��ϴ�'); location.href = 'LoginWeMo'; </script>");
+			out.println("<script>alert('Login failed'); location.href = 'LoginWeMo'; </script>");
 			out.close();
 			return null;
 		}
@@ -183,16 +183,16 @@ public class MemberController {
 				Member member = mService.getMemberDetail(kemail);
 				if (member.getAUTH_TYPE().equals("KAKAO")) {
 					session.setAttribute("USER_EMAIL", kemail);
-					out.println("<script> location.href = 'Memolist'</script>");// ���̵� ������� �������� �̵�
+					out.println("<script> location.href = 'Memolist'</script>");
 				} else {
 					out.println("<script> location.href = 'WeMo_Login'</script>");
 				}
 			} else {
 				if (mService.kakaoJoin(kemail)) {
 					session.setAttribute("USER_EMAIL", kemail);
-					out.println("<script> location.href = 'Memolist' </script>");// īī�� ȸ������ �Ϸ�
+					out.println("<script> location.href = 'Memolist' </script>");
 				} else {
-					out.println("<script> location.href = 'WeMo_Login' </script>");// īī�� ȸ������ ����
+					out.println("<script> location.href = 'WeMo_Login' </script>");
 				}
 			}
 		} catch (Exception e) {
@@ -218,16 +218,16 @@ public class MemberController {
 				Member member = mService.getMemberDetail(nemail);
 				if(member.getAUTH_TYPE().equals("NAVER")) {
 				session.setAttribute("USER_EMAIL", nemail);
-				out.println("<script> location.href = 'Memolist'</script>");// ���̵� ������� �������� �̵�
+				out.println("<script> location.href = 'Memolist'</script>");
 				} else {
 				out.println("<script> location.href = 'WeMo_Login'</script>");
 				}
 			} else {
 				if (mService.naverJoin(nemail)) {
 					session.setAttribute("USER_EMAIL", nemail);
-					out.println("<script> location.href = 'Memolist' </script>");// īī�� ȸ������ �Ϸ�
+					out.println("<script> location.href = 'Memolist' </script>");
 				} else {
-					out.println("<script> location.href = 'WeMo_Login' </script>");// īī�� ȸ������ ����
+					out.println("<script> location.href = 'WeMo_Login' </script>");
 				}
 			}
 		} catch(Exception e) {

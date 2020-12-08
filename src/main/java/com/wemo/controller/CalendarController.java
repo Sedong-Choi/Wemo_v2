@@ -51,7 +51,7 @@ public class CalendarController {
 			if(calendardao.insert(calendarbean) > 0) {
 				out.println("success");
 			} else {
-				out.println("<script>alert('Ķ������ �Է��ϴ� ���߿� ������ �߻��Ͽ����ϴ�. �ٽ� �õ����ּ���.')</script>");
+				out.println("<script>alert('insert failed')</script>");
 			}
 
 		} catch (Exception e) {
@@ -103,7 +103,7 @@ public class CalendarController {
 			if (calendardao.update(calendarbean) > 0) {
 				out.print("calendar update success");
 			} else {
-				out.println("<script>alert('Ķ������ �����ϴ� ���߿� ������ �߻��߽��ϴ�. �ٽ� �õ����ּ���.')</script>");
+				out.println("<script>alert('calendar update failed')</script>");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,9 +137,9 @@ public class CalendarController {
 			if (list != null) {
 				String jsonListObj = new Gson().toJson(list);
 				out.println(jsonListObj);
-				System.out.println("����Ʈ ����:" + jsonListObj);
+				System.out.println("JsonListObj:" + jsonListObj);
 			} else {
-				out.print("<script>Ķ������ �������� �� �����Ͽ����ϴ� �ٽ� �õ����ּ���.</script>");
+				out.print("<script></script>");
 			}
 
 		} catch (IOException e) {

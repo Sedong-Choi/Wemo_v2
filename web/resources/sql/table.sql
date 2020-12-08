@@ -35,13 +35,13 @@ CREATE TABLE MEMO(
 );
 
 CREATE TABLE CALENDAR(
-                         USER_EMAIL VARCHAR(100),			/*���̵�*/
+                         USER_EMAIL VARCHAR(100),
                          MEMO_NUM INT,
-                         MEMO_SUB VARCHAR(30),				/*ī�װ�*/
-                         MEMO_TEX TEXT(4000),						/*���� ����*/
-                         MEMO_DATE VARCHAR(10) NOT NULL,			/*���� �ۼ���*/
-                         MEMO_PRE VARCHAR(10),						/*���� �ۼ���*/
-                         PREV_TEX TEXT(4000),						/*���� �ۼ�����*/
+                         MEMO_SUB VARCHAR(30),
+                         MEMO_TEX TEXT(4000),
+                         MEMO_DATE VARCHAR(10) NOT NULL,
+                         MEMO_PRE VARCHAR(10),
+                         PREV_TEX TEXT(4000),
                          start VARCHAR(30),
                          end VARCHAR(30),
                          CALENDAR_USERNAME VARCHAR(20),
@@ -50,5 +50,6 @@ CREATE TABLE CALENDAR(
                          MEMO_COLOR VARCHAR(20),
                          title VARCHAR(100)
 );
-insert into member values('se', 'se', 'WEMO', 'se', 'No Form Now', 'No Form Now', 'No Form Now',
+insert into MEMBER
+values('se', 'se', 'WEMO', 'se', 'No Form Now', 'No Form Now', 'No Form Now',
                           'STUDY') ;

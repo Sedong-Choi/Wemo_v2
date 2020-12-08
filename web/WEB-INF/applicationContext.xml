@@ -7,9 +7,9 @@
 
     <bean destroy-method="close" id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
-        <property value="jdbc:mysql://127.0.0.1:3306/wemo?serverTimezone=Asia/Seoul" name="url"/>
-        <property value="root" name="username"/>
-        <property value="sedong" name="password"/>
+        <property value="jdbc:mysql://wemo-instance.cwbcbozay6z8.ap-northeast-2.rds.amazonaws.com:3306/wemo" name="url"/>
+        <property value="wemoadmin" name="username"/>
+        <property value="wemoawsrds" name="password"/>
     </bean>
     
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

@@ -28,11 +28,11 @@
 	</select>
 	
 	<select id = "isId" parameterType="String" resultType="String">
-		select USER_PASS from member where USER_EMAIL= #{USER_EMAIL}
+		select USER_PASS from MEMBER where USER_EMAIL= #{USER_EMAIL}
 	</select>
 	
 	<select id = "idcheck" parameterType = "String" resultType = "String">
-		select USER_EMAIL from member where USER_EMAIL = #{USER_EMAIL}
+		select USER_EMAIL from MEMBER where USER_EMAIL = #{USER_EMAIL}
 	</select>
 	
 	<select id = "getUserAutoForm" parameterType = "member" resultType = "member">

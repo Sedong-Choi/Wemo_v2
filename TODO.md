@@ -24,7 +24,9 @@
 6. Back-end spring boot 로 다시 만들기
    > Spring boot 공부 선행
 7. DB AWS mysql로 변경하기
-   > React 와 Spring boot 로 변경 후 할것.
+   > React 와 Spring boot 로 변경 후 할것.`미리 해버렸다`<br>
+   > AWS RDS MySql 로 연결하여 local DB 사용하지 않기로 하였다.<br>
+   > (2020-12-08 10:00 시작 ~ 13:28 완료)<br>
 8. EC2에 배포하기
    > 최종 version
    

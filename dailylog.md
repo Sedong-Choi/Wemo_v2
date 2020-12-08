@@ -75,6 +75,11 @@ STS 에서 Spring MVC project로 만들었다.<br>
 **AWS RDS 연결**
  * AWS RDRDS로 MySql생성 후 database.properties 생성했다. 어제까지만 해도 로드가 되었던 JDBC Driver가 로드가 안된다..
  `경로 설정이 잘못된것 같다`
- * 경로 고치던 중 context.xml 들의 mapping 이 안되는 오류가 생겼다.(11:28) 
+ * 경로 고치던 중 context.xml 들의 mapping 이 안되는 오류가 생겼다.(11:28)
+ `git rollback 해서 다시 시작했다.`
+ * rollback 후 url 을 AWS RDS endpoint/`사용할SchemaName`로 설정 후 연결 해 주었더니 잘 연결되었다.
+ * 추가 적으로 oracle 에서는 column이름이 대소문자 구분을 안하였는데 , MySql은 대소문자 구분을 해서 .xml 부분을 수정해주었다.
+
+ 
 
  

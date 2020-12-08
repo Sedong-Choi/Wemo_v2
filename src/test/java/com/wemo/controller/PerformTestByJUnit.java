@@ -19,8 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"file:../../../../../../web/WEB-INF/dispatcher-servlet.xml",
-        "file:../../../../../../web/WEB-INF/applicationContext.xml"})
+@ContextConfiguration(locations = {"file:/WEB-INF/spring/root-context.xml",
+        "file:/WEB-INF/spring/appServlet/servlet-context.xml"})
 public class PerformTestByJUnit {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PerformTestByJUnit .class);

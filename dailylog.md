@@ -79,6 +79,11 @@ STS 에서 Spring MVC project로 만들었다.<br>
  `git rollback 해서 다시 시작했다.`
  * rollback 후 url 을 AWS RDS endpoint/`사용할SchemaName`로 설정 후 연결 해 주었더니 잘 연결되었다.
  * 추가 적으로 oracle 에서는 column이름이 대소문자 구분을 안하였는데 , MySql은 대소문자 구분을 해서 .xml 부분을 수정해주었다.
+ 
+**EC2 배포**
+ * 우선 SPRING FRAMEWORK 구조로 바꿨다. web > src/main/webapp 으로 변경 후 web.xml 및 config 파일을 변경했다.
+ * war로 build 한 후 ec2에 tomcat 설치 및 설정 하였다. `https://www.bsidesoft.com/7123` 참조하여 설정 하였다.
+ * Wemo Project link [이동](52.79.215.36:8080/wemo)
 
  
 

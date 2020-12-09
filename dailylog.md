@@ -83,8 +83,17 @@ STS 에서 Spring MVC project로 만들었다.<br>
 **EC2 배포**
  * 우선 SPRING FRAMEWORK 구조로 바꿨다. web > src/main/webapp 으로 변경 후 web.xml 및 config 파일을 변경했다.
  * war로 build 한 후 ec2에 tomcat 설치 및 설정 하였다. `https://www.bsidesoft.com/7123` 참조하여 설정 하였다.
- * Wemo Project link [이동](52.79.215.36:8080/wemo)
-
+ * Wemo Project link [이동](http://52.79.214.36:8080/wemo/)
+ 
+ -------------
+ 
+ ## 2020-12-09
+ **배포 후 몇가지 기능이 안되는 것을 확인했다**
+ 1. 사용자 지정 완성 품 안됨.
+ 2. 캘린더 저장안됨 (클릭시 html body 부분에 나오게 변경해야 할 듯하다.)<br>
+ 
+ **기능 추가 할 것** (TODO에 입력하기)
+ 1. 브라우저의 크기가 작아질 시 순서 변경 후 저장 안됨.
  
 
  
